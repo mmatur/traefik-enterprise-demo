@@ -68,7 +68,7 @@ spec:
         expiry: 86400
       forwardHeaders:
         X-Traefik-Group: groups
-      # claims: Contains(`groups`, `admin`)
+      claims: Contains(`groups`, `admin`)
 
 ## JWT
 ---
