@@ -1,0 +1,27 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: sre
+spec:
+  description: SRE
+  destinations:
+    - namespace: "*"
+      server: "*"
+  sourceRepos:
+    - https://github.com/mmatur/traefik-enterprise-demo
+status: {}
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: app
+spec:
+  description: Developper applications
+  destinations:
+    - namespace: "*"
+      server: "*"
+  sourceRepos:
+    - https://github.com/mmatur/traefik-enterprise-demo
+status: {}

@@ -1,0 +1,24 @@
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: apiportal
+  namesapce: argocd
+  labels:
+    application: apiportal
+spec:
+  destination:
+    namespace: apiportal
+    server: https://kubernetes.default.svc
+  project: app
+  source:
+    directory:
+      jsonnet: {}
+      recurse: false
+    path: ./dev/apiportal
+    repoURL: https://github.com/mmatur/traefik-enterprise-demo
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
