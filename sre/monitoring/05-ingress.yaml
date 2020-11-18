@@ -1,0 +1,28 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: grafana-tls
+  namespace: monitoring
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`grafana.data-essential.demo.traefiklabs.tech`)
+      services:
+        - name: grafana
+          port: 3000
+  tls:
+    certResolver: default
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: remove-auth-header
+  namespace: traefikee
+spec:
+  headers:
+    customRequestHeaders:
+      Authorization: ""
