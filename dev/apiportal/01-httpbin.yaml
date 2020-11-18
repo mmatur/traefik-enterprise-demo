@@ -52,5 +52,4 @@ spec:
       # middlewares:
       #   - name: oidc-auth
       #   - name: ratelimit
-  tls:
-    certResolver: default
+  tls: {}
