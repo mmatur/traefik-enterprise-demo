@@ -66,8 +66,8 @@ spec:
         path: "/"
         secret: powpowpowpowpowpowpowpow
         expiry: 86400
-      # forwardHeaders:
-      #   X-Traefik-Group: groups
+      forwardHeaders:
+        X-Traefik-Group: groups
       # claims: Contains(`groups`, `admin`)
 
 ## JWT
