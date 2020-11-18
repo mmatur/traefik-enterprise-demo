@@ -15,7 +15,7 @@ spec:
           port: 80
       middlewares:
         - name: test-header
-      #   - name: oidc-auth
+        - name: oidc-auth
         - name: ratelimit
       #   - name: jwt-auth
   tls:
