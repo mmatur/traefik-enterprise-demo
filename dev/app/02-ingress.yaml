@@ -13,10 +13,10 @@ spec:
       services:
         - name: app-v1
           port: 80
-      # middlewares:
-      #   - name: test-header
+      middlewares:
+        - name: test-header
       #   - name: oidc-auth
-      #   - name: ratelimit
+        - name: ratelimit
       #   - name: jwt-auth
   tls:
     certResolver: default
