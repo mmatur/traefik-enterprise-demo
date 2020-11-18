@@ -1,0 +1,42 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: data-essential-static-config
+  namespace: traefikee
+data:
+  static.toml: |
+    [entryPoints]
+      [entryPoints.web]
+        address = ":80"
+      [entryPoints.web.http.redirections.entryPoint]
+        to = "websecure"
+        scheme = "https"
+
+      [entryPoints.websecure]
+        address = ":443"
+
+    [api]
+      dashboard = true
+
+    [providers.kubernetesCRD]
+
+    [metrics]
+      [metrics.prometheus]
+
+    [certificatesResolvers.default.acme]
+      email = "tee-prod@containo.us"
+      [certificatesResolvers.default.acme.tlschallenge]
+
+    [authSources]
+      [authSources.oidcSource.oidc]
+        issuer = "https://keycloak.data-essential.demo.traefiklabs.tech/auth/realms/traefiklabs"
+        clientID = "demo-app"
+        clientSecret = "aze"
+
+      [authSources.jwtSource.jwt]
+        signingSecret = "supersecret"
+
+    [apiportal]
+      path = "/spec.json"
+

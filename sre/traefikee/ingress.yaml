@@ -1,0 +1,41 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard-tls
+  namespace: traefikee
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`dashboard.data-essential.demo.traefiklabs.tech`)
+      services:
+        - name: api@internal
+          kind: TraefikService
+      # middlewares:
+      #   - name: oidc-auth-dashboard
+      #     namespace: traefikee
+  tls:
+    certResolver: default
+
+
+## Open ID connect
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: oidc-auth-dashboard
+  namespace: traefikee
+spec:
+  plugin:
+    oidcAuth:
+      source: oidcSource
+      scopes:
+        - openid
+      redirectUrl: "/callback"
+      session:
+        name: "%s-session"
+        path: "/"
+        secret: powpowpowpowpowpowpowpow
+        expiry: 86400
