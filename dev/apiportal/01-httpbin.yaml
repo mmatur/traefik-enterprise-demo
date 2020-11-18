@@ -45,7 +45,7 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`httpbin.data-essential.demo.traefiklabs.tech`)
+      match: Host(`httpbin.static.traefiklabs.tech`)
       services:
         - name: api-httpbin
           port: 80
